@@ -22,15 +22,31 @@ public class UserService {
 	}
 
 	public static User getUser(String userId) {
-		return null;
+		Session session = HibernateUtil.getCurrentSession();
+		session.beginTransaction();
+		User user = (User) session.get(User.class, userId);
+		session.getTransaction().commit();
+		return user;
 	}
 
 	public static User getByUserName(String userName) {
-		return null;
+		Session session = HibernateUtil.getCurrentSession();
+		session.beginTransaction();
+		User user = (User) session
+				.createQuery("select u from User u where u.userName = :userName")
+				.setParameter("userName", userName).uniqueResult(); 
+		// Eager fetch the collection so we can use it detached
+		session.getTransaction().commit();
+		return user;
 	}
 
+	@SuppressWarnings("unchecked")
 	public static List<User> getAll() {
-		return null;
+		Session session = HibernateUtil.getCurrentSession();
+		session.beginTransaction();
+		List<User> result = session.createQuery("from User").list();
+		session.getTransaction().commit();
+		return result;
 	}
 
 }

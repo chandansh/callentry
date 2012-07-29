@@ -19,10 +19,26 @@ public class CreateUserAction extends ActionSupport {
 	}
 
 	public String execute() {
-		final String result = "success";
-		UserService.saveOrUpdate(user);
-		System.out.println(user);
+		String result = "success";
+		try {
+			UserService.saveOrUpdate(user);
+			System.out.println(user);
+		} catch (Exception e) {
+			result = "failure";
+			e.printStackTrace();
+		}
+
 		return result;
+	}
+
+	@Override
+	public void validate() {
+		if (user != null
+				&& UserService.getByUserName(user.getUserName()) != null) {
+			userTypes = CommonUtil.getUserTypes();
+			addFieldError("user.userName", "user already exist");
+		}
+
 	}
 
 	public User getUser() {

@@ -1,33 +1,41 @@
 package com.callentry.model;
 
+import java.util.Date;
+
 import com.callentry.util.GUIDGenerator;
 
 public class CallEntry {
 
 	private String id;
 	private String userId;
+	private String name;
+	private Date date;
+	private int callType;
 	private String serviceTicketNo;
-	private String customerName;
-	private int typeOfCall;
-	private boolean sale;
+	private String onlineDiscription;
+	private boolean saleMade;
 	private double amount;
-	private String discription;
+	private String agreementOrderNo;
+	private String comments;
 
 	public CallEntry() {
 		id = GUIDGenerator.generateNewId();
+		date = new Date();
 	}
 
-	public CallEntry(String userId, String serviceTicketNo,
-			String customerName, int typeOfCall, boolean sale, double amount,
-			String discription) {
+	public CallEntry(String userId, String name, int callType,
+			String serviceTicketNo, String onlineDiscription, boolean saleMade,
+			double amount, String agreementOrderNo, String comments) {
 		this();
 		this.userId = userId;
+		this.name = name;
+		this.callType = callType;
 		this.serviceTicketNo = serviceTicketNo;
-		this.customerName = customerName;
-		this.typeOfCall = typeOfCall;
-		this.sale = sale;
+		this.onlineDiscription = onlineDiscription;
+		this.saleMade = saleMade;
 		this.amount = amount;
-		this.discription = discription;
+		this.agreementOrderNo = agreementOrderNo;
+		this.comments = comments;
 	}
 
 	public String getId() {
@@ -46,6 +54,30 @@ public class CallEntry {
 		this.userId = userId;
 	}
 
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
+	public int getCallType() {
+		return callType;
+	}
+
+	public void setCallType(int callType) {
+		this.callType = callType;
+	}
+
 	public String getServiceTicketNo() {
 		return serviceTicketNo;
 	}
@@ -54,28 +86,20 @@ public class CallEntry {
 		this.serviceTicketNo = serviceTicketNo;
 	}
 
-	public String getCustomerName() {
-		return customerName;
+	public String getOnlineDiscription() {
+		return onlineDiscription;
 	}
 
-	public void setCustomerName(String customerName) {
-		this.customerName = customerName;
+	public void setOnlineDiscription(String onlineDiscription) {
+		this.onlineDiscription = onlineDiscription;
 	}
 
-	public int getTypeOfCall() {
-		return typeOfCall;
+	public boolean isSaleMade() {
+		return saleMade;
 	}
 
-	public void setTypeOfCall(int typeOfCall) {
-		this.typeOfCall = typeOfCall;
-	}
-
-	public boolean isSale() {
-		return sale;
-	}
-
-	public void setSale(boolean sale) {
-		this.sale = sale;
+	public void setSaleMade(boolean saleMade) {
+		this.saleMade = saleMade;
 	}
 
 	public double getAmount() {
@@ -86,12 +110,30 @@ public class CallEntry {
 		this.amount = amount;
 	}
 
-	public String getDiscription() {
-		return discription;
+	public String getAgreementOrderNo() {
+		return agreementOrderNo;
 	}
 
-	public void setDiscription(String discription) {
-		this.discription = discription;
+	public void setAgreementOrderNo(String agreementOrderNo) {
+		this.agreementOrderNo = agreementOrderNo;
+	}
+
+	public String getComments() {
+		return comments;
+	}
+
+	public void setComments(String comments) {
+		this.comments = comments;
+	}
+
+	@Override
+	public String toString() {
+		return "id : " + id + " user Id : " + userId + " name:" + name
+				+ " date :" + date + " callType :" + callType
+				+ " serviceTicketNo:" + serviceTicketNo
+				+ " onlineDiscription :" + onlineDiscription + " saleMade:"
+				+ saleMade + " amount:" + amount + " agreementOrderNo :"
+				+ agreementOrderNo + " comments:" + comments;
 	}
 
 }

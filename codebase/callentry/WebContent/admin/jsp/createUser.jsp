@@ -8,7 +8,8 @@
 <title>Create New User</title>
 </head>
 <body>
-	<div align="center">
+	
+	<h2>Create new User</h2>
 		<s:form action="createUser" method="post">
 			<s:textfield name="user.userName" label="User Name" />
 			<s:textfield name="user.firstName" label="First Name" />
@@ -17,6 +18,6 @@
 			<s:select list="userTypes" name="user.userType" label="User Type" />
 			<s:submit label="Create User" />
 		</s:form>
-	</div>
+	
 </body>
 </html>
