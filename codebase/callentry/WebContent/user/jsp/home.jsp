@@ -8,8 +8,20 @@
 <title>User Home</title>
 </head>
 <body>
-    <s:property value="%{#session.user.userName}" />
+	Welcome
+	<s:property value="%{#session.user.userName}" />
 	<h1>User Home</h1>
 	<a href="populateCallEntry">Create Entry</a>
+	<br>
+	<a href="viewTodayEntries">View Today Entries</a>
+	<br>
+	<a href="viewAllEntries">View All Entries</a>
+	<br>
+	<a href="viewEntriesByDateForm">View Entries By Date</a>
+	<br>
+	<s:url action="logout" var="logout" namespace="">
+	</s:url>
+	<s:a href="%{logout}">Logout</s:a>
+	<br>
 </body>
 </html>

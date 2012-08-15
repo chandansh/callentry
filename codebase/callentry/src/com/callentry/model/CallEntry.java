@@ -1,5 +1,6 @@
 package com.callentry.model;
 
+import java.util.Calendar;
 import java.util.Date;
 
 import com.callentry.util.GUIDGenerator;
@@ -9,7 +10,7 @@ public class CallEntry {
 	private String id;
 	private String userId;
 	private String name;
-	private Date date;
+	private Calendar date;
 	private int callType;
 	private String serviceTicketNo;
 	private String onlineDiscription;
@@ -17,10 +18,12 @@ public class CallEntry {
 	private double amount;
 	private String agreementOrderNo;
 	private String comments;
+	private long timeStamp;
 
 	public CallEntry() {
 		id = GUIDGenerator.generateNewId();
-		date = new Date();
+		date = Calendar.getInstance();
+		timeStamp = new Date().getTime();
 	}
 
 	public CallEntry(String userId, String name, int callType,
@@ -62,11 +65,11 @@ public class CallEntry {
 		this.name = name;
 	}
 
-	public Date getDate() {
+	public Calendar getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(Calendar date) {
 		this.date = date;
 	}
 
@@ -124,6 +127,14 @@ public class CallEntry {
 
 	public void setComments(String comments) {
 		this.comments = comments;
+	}
+
+	public long getTimeStamp() {
+		return timeStamp;
+	}
+
+	public void setTimeStamp(long timeStamp) {
+		this.timeStamp = timeStamp;
 	}
 
 	@Override

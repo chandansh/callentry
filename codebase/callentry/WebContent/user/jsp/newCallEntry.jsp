@@ -8,8 +8,8 @@
 <title>New Call Entry</title>
 </head>
 <body>
-
-	<h2>New Call Entry</h2>
+	<s:actionerror/>
+	<h3>New Call Entry</h3><a href="home">User Home</a>
 	<s:form action="CallEntry" method="post">
 		<s:select list="callTypes" name="callEntry.callType" label="Call Type" />
 		<s:textfield name="callEntry.name" label="Client Name" />

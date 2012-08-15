@@ -4,37 +4,60 @@
 	<!-- constant name="struts.action.excludePattern" value="/_ah/.*?" / -->
 	<!-- <include file="struts-default.xml" /> -->
 	<package extends="struts-default" namespace="" name="callentry">
-
 		<action name="login" class="com.callentry.action.LoginAction">
 			<result name="admin" type="redirect">admin/home</result>
 			<result name="user" type="redirect">user/home</result>
 			<result name="failure">index.jsp</result>
 		</action>
-		
+		<action name="logout" class="com.callentry.action.LogoutAction">
+			<result name="success">index.jsp</result>
+		</action>
 	</package>
-	
+
 	<package extends="struts-default" namespace="/admin" name="callEntryAdmin">
 		<action name="home">
 			<result>jsp/home.jsp</result>
 		</action>
-		
-		<action name="*createUser" method="{1}" class="com.callentry.action.CreateUserAction">
+
+		<action name="*createUser" method="{1}"
+			class="com.callentry.action.CreateUserAction">
 			<result name="populated">jsp/createUser.jsp</result>
 			<result name="input">jsp/createUser.jsp</result>
 			<result name="success">jsp/userCreated.jsp</result>
 			<result name="failure" type="redirect">populatecreateUser</result>
 		</action>
 	</package>
-	
+
 	<package extends="struts-default" namespace="/user" name="callEntryUser">
 		<action name="home">
 			<result>jsp/home.jsp</result>
 		</action>
-		<action name="*CallEntry" method="{1}" class="com.callentry.action.CallEntryAction">
+		<action name="*CallEntry" method="{1}"
+			class="com.callentry.action.CallEntryAction">
 			<result name="populated">jsp/newCallEntry.jsp</result>
 			<result name="input">jsp/newCallEntry.jsp</result>
-			<result name="success">jsp/callEntryCreated.jsp</result>
+			<result name="success">jsp/todayEntries.jsp</result>
 			<result name="failure" type="redirect">populateCallEntry</result>
+		</action>
+		<action name="viewTodayEntries" method="listTodayEntries"
+			class="com.callentry.action.ViewEntryAction">
+			<result>jsp/todayEntries.jsp</result>
+		</action>
+		<action name="viewAllEntries" method="listAllEntries"
+			class="com.callentry.action.ViewEntryAction">
+			<result>jsp/allEntries.jsp</result>
+		</action>
+		<action name="viewEntriesByDateForm">
+			<result>jsp/entriesByDateForm.jsp</result>
+		</action>
+		<action name="listEntriesByDate" method="listDateEntries"
+			class="com.callentry.action.ViewEntryAction">
+			<result>jsp/entriesByDateForm.jsp</result>
+		</action>
+		<action name="deleteEntry" class="com.callentry.action.UpdateEntryAction">
+			<result name="allEntries" type="redirect">viewAllEntries</result>
+			<result name="todayEntries" type="redirect">viewTodayEntries</result>
+			<result name="entriesByDate" type="redirect">viewEntriesByDateForm</result>
 		</action>
 		
 	</package>

@@ -10,20 +10,21 @@
 		<property name="password" column="password" />
 		<property name="userType" column="userType" type="java.lang.Integer" />
 	</class>
-	
+
 	<class name="com.callentry.model.CallEntry">
 		<id name="id">
 		</id>
 		<property name="userId" column="userId" />
 		<property name="name" column="name" />
-		<property name="date" column="date" type="java.util.Date" />
-		<property name="callType" column="callType" type="java.lang.Integer"/>
-		<property name="serviceTicketNo" column="serviceTicketNo"/>
-		<property name="onlineDiscription" column="onlineDiscription"/>
-		<property name="saleMade" column="saleMade" type="java.lang.Boolean"/>
-		<property name="amount" column="amount" type="java.lang.Double"/>
-		<property name="agreementOrderNo" column="agreementOrderNo"/>
-		<property name="comments" column="comments"/>
+		<property name="date" column="date" type="calendar_date" />
+		<property name="callType" column="callType" type="java.lang.Integer" />
+		<property name="serviceTicketNo" column="serviceTicketNo" />
+		<property name="onlineDiscription" column="onlineDiscription" />
+		<property name="saleMade" column="saleMade" type="java.lang.Boolean" />
+		<property name="amount" column="amount" type="java.lang.Double" />
+		<property name="agreementOrderNo" column="agreementOrderNo" />
+		<property name="comments" column="comments" />
+		<property name="timeStamp" column="timeStamp" type="long" />
 	</class>
 
 </hibernate-mapping>
