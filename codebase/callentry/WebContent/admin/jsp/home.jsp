@@ -8,8 +8,17 @@
 <title>Admin Home</title>
 </head>
 <body>
-    <s:property value="%{#session.user.userName}" />
+	<s:property value="%{#session.user.userName}" />
 	<h1>Admin Home</h1>
 	<a href="populatecreateUser">Create User</a>
+	<br>
+	<a href="viewUsers">View Users</a>
+	<br>
+	<a href="populateViewEntries">View Entries by User and Date</a>
+	<br>
+	<s:url action="logout" var="logout" namespace="">
+	</s:url>
+	<s:a href="%{logout}">Logout</s:a>
+	<br>
 </body>
 </html>

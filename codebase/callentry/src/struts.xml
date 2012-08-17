@@ -20,11 +20,32 @@
 		</action>
 
 		<action name="*createUser" method="{1}"
-			class="com.callentry.action.CreateUserAction">
+			class="com.callentry.action.admin.CreateUserAction">
 			<result name="populated">jsp/createUser.jsp</result>
 			<result name="input">jsp/createUser.jsp</result>
 			<result name="success">jsp/userCreated.jsp</result>
 			<result name="failure" type="redirect">populatecreateUser</result>
+		</action>
+
+		<action name="viewUsers" class="com.callentry.action.admin.ViewUsersAction">
+			<result name="success">jsp/viewUsers.jsp</result>
+		</action>
+
+		<action name="*ViewEntries" method="{1}"
+			class="com.callentry.action.admin.ViewEntriesAction">
+			<result name="populated">jsp/viewEntries.jsp</result>
+			<result name="success">jsp/viewEntries.jsp</result>
+		</action>
+
+		<action name="DownloadEntries" method="downloadEntries"
+			class="com.callentry.action.admin.ViewEntriesAction">
+			<result name="success" type="stream">
+				<param name="contentType">application/vnd.ms-excel</param>
+				<param name="inputName">excelStream</param>
+				<param name="contentDisposition">attachment; filename="${fileName}"</param>
+				<param name="bufferSize">1024</param>
+			</result>
+
 		</action>
 	</package>
 
@@ -33,32 +54,44 @@
 			<result>jsp/home.jsp</result>
 		</action>
 		<action name="*CallEntry" method="{1}"
-			class="com.callentry.action.CallEntryAction">
+			class="com.callentry.action.user.CallEntryAction">
 			<result name="populated">jsp/newCallEntry.jsp</result>
 			<result name="input">jsp/newCallEntry.jsp</result>
 			<result name="success">jsp/todayEntries.jsp</result>
 			<result name="failure" type="redirect">populateCallEntry</result>
 		</action>
 		<action name="viewTodayEntries" method="listTodayEntries"
-			class="com.callentry.action.ViewEntryAction">
+			class="com.callentry.action.user.ViewEntryAction">
 			<result>jsp/todayEntries.jsp</result>
 		</action>
 		<action name="viewAllEntries" method="listAllEntries"
-			class="com.callentry.action.ViewEntryAction">
+			class="com.callentry.action.user.ViewEntryAction">
 			<result>jsp/allEntries.jsp</result>
 		</action>
-		<action name="viewEntriesByDateForm">
+		<action name="viewEntriesByDateForm" method="populate"
+			class="com.callentry.action.user.ViewEntryAction">
 			<result>jsp/entriesByDateForm.jsp</result>
 		</action>
 		<action name="listEntriesByDate" method="listDateEntries"
-			class="com.callentry.action.ViewEntryAction">
+			class="com.callentry.action.user.ViewEntryAction">
 			<result>jsp/entriesByDateForm.jsp</result>
 		</action>
-		<action name="deleteEntry" class="com.callentry.action.UpdateEntryAction">
+		<action name="deleteEntry" class="com.callentry.action.user.UpdateCallEntryAction">
 			<result name="allEntries" type="redirect">viewAllEntries</result>
 			<result name="todayEntries" type="redirect">viewTodayEntries</result>
-			<result name="entriesByDate" type="redirect">viewEntriesByDateForm</result>
+			<result name="entriesByDate" type="redirect">viewEntriesByDateForm
+			</result>
 		</action>
-		
+		<action name="*EditEntry" method="{1}"
+			class="com.callentry.action.user.UpdateCallEntryAction">
+			<result name="populated">jsp/editCallEntry.jsp</result>
+			<result name="input">jsp/editCallEntry.jsp</result>
+			<result name="allEntries" type="redirect">viewAllEntries</result>
+			<result name="todayEntries" type="redirect">viewTodayEntries</result>
+			<result name="entriesByDate" type="redirect">viewEntriesByDateForm
+			</result>
+			<result name="success">jsp/todayEntries.jsp</result>
+			<result name="failure" type="redirect">populateEditCallEntry</result>
+		</action>
 	</package>
 </struts>

@@ -9,8 +9,9 @@ import org.hibernate.cfg.Configuration;
 
 import com.callentry.model.User;
 import com.callentry.persistence.HibernateUtil;
+import com.callentry.util.IConstants;
 
-public class UserService {
+public class UserService implements IConstants {
 
 	public static User saveOrUpdate(User user) {
 
@@ -33,8 +34,9 @@ public class UserService {
 		Session session = HibernateUtil.getCurrentSession();
 		session.beginTransaction();
 		User user = (User) session
-				.createQuery("select u from User u where u.userName = :userName")
-				.setParameter("userName", userName).uniqueResult(); 
+				.createQuery(
+						"select u from User u where u.userName = :userName")
+				.setParameter("userName", userName).uniqueResult();
 		// Eager fetch the collection so we can use it detached
 		session.getTransaction().commit();
 		return user;
@@ -45,6 +47,16 @@ public class UserService {
 		Session session = HibernateUtil.getCurrentSession();
 		session.beginTransaction();
 		List<User> result = session.createQuery("from User").list();
+		session.getTransaction().commit();
+		return result;
+	}
+
+	@SuppressWarnings("unchecked")
+	public static List<User> getUsers() {
+		Session session = HibernateUtil.getCurrentSession();
+		session.beginTransaction();
+		List<User> result = session.createQuery(
+				"from User u where u.userType = " + USER).list();
 		session.getTransaction().commit();
 		return result;
 	}

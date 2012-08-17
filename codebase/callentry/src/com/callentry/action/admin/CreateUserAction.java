@@ -1,4 +1,4 @@
-package com.callentry.action;
+package com.callentry.action.admin;
 
 import java.util.Map;
 

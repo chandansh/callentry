@@ -2,11 +2,12 @@ package com.callentry.action;
 
 import java.util.Map;
 
-import org.apache.struts2.interceptor.RequestAware;
+import javax.servlet.http.HttpSession;
+
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.callentry.model.User;
-import com.callentry.service.CallEntryService;
 import com.callentry.service.UserService;
 import com.callentry.util.IConstants;
 import com.opensymphony.xwork2.ActionSupport;
@@ -22,12 +23,22 @@ public class LoginAction extends ActionSupport implements SessionAware {
 		User loggedInUser = UserService.getByUserName(user.getUserName());
 		// System.out.println(loggedInUser);
 		if (loggedInUser != null) {
-			session.put("loggedin", true);
-			session.put("user", loggedInUser);
+			HttpSession httpSession = ServletActionContext.getRequest()
+					.getSession(true);
+			httpSession.setAttribute("loggedin", true);
+			httpSession.setAttribute("user", loggedInUser);
+			// session.put("loggedin", true);
+			// session.put("user", loggedInUser);
 			if (loggedInUser.getUserType() == IConstants.ADMIN_USER) {
 				result = "admin";
 			} else if (loggedInUser.getUserType() == IConstants.USER) {
 				result = "user";
+			}
+		} else {
+			User admin = UserService.getByUserName("admin");
+			if (admin == null) {
+				admin = new User("admin", "admin", "Call Entry", "admin", 2);
+				UserService.saveOrUpdate(admin);
 			}
 		}
 

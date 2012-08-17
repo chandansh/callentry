@@ -2,6 +2,7 @@ package com.callentry.action;
 
 import java.util.Map;
 
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
@@ -15,6 +16,7 @@ public class LogoutAction extends ActionSupport implements SessionAware {
 		System.out.println("logout action invoked..");
 		session.remove("loggedin");
 		session.remove("user");
+		ServletActionContext.getRequest().getSession().invalidate();
 		return SUCCESS;
 	}
 

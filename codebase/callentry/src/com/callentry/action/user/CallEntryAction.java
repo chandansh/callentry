@@ -1,4 +1,4 @@
-package com.callentry.action;
+package com.callentry.action.user;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -10,7 +10,6 @@ import org.apache.struts2.interceptor.SessionAware;
 import com.callentry.model.CallEntry;
 import com.callentry.model.User;
 import com.callentry.service.CallEntryService;
-import com.callentry.service.UserService;
 import com.callentry.util.CommonUtil;
 import com.opensymphony.xwork2.ActionSupport;
 

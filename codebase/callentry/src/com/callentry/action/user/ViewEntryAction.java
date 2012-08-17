@@ -1,4 +1,4 @@
-package com.callentry.action;
+package com.callentry.action.user;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -17,6 +17,10 @@ public class ViewEntryAction extends ActionSupport {
 	private Date date;
 	private List<CallEntry> entries = new ArrayList<CallEntry>();
 
+	public String populate() {
+		date = new Date();
+		return SUCCESS;
+	}
 	public String listTodayEntries() {
 		Map<String, Object> session = ActionContext.getContext().getSession();
 		User user = (User) session.get("user");
@@ -37,7 +41,7 @@ public class ViewEntryAction extends ActionSupport {
 		User user = (User) session.get("user");
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(date);
-		System.out.println("date:" + date);
+		//System.out.println("date:" + date);
 		entries = CallEntryService.getByUserAndDate(user.getUserId(), cal);
 		// for (CallEntry entry : entries) {
 		// System.out.println("Entry : " + entry);
