@@ -16,5 +16,4 @@ public class GUIDGenerator {
 		}
 		return sb.toString();
 	}
-
 }

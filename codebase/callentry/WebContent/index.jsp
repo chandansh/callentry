@@ -6,6 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Welcome to CallEntry Application</title>
+<link rel="stylesheet" type="text/css" href="/callentry/css/callentry.css">
 </head>
 <body>
 	<h1 align="center">Welcome to CallEntry Application</h1>

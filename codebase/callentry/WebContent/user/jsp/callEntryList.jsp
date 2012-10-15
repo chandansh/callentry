@@ -1,10 +1,10 @@
+<link rel="stylesheet" type="text/css" href="/callentry/css/callentry.css">
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="/struts-tags" prefix="s"%>
 <s:actionmessage />
-<a href="populateCallEntry">Create new Entry</a>
-|
-<a href="home">User Home</a>
+<a href="populateCallEntry">Create new Entry</a>&nbsp;
+|&nbsp;<a href="home">User Home</a>
 <table border="1" cellspacing="0">
 	<tr>
 		<th>Name</th>

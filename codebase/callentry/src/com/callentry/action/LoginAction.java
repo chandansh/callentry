@@ -29,9 +29,12 @@ public class LoginAction extends ActionSupport implements SessionAware {
 			httpSession.setAttribute("user", loggedInUser);
 			// session.put("loggedin", true);
 			// session.put("user", loggedInUser);
-			if (loggedInUser.getUserType() == IConstants.ADMIN_USER) {
+			boolean validUser = checkLogin(loggedInUser, user);
+			if (validUser
+					&& loggedInUser.getUserType() == IConstants.ADMIN_USER) {
 				result = "admin";
-			} else if (loggedInUser.getUserType() == IConstants.USER) {
+			} else if (validUser
+					&& loggedInUser.getUserType() == IConstants.USER) {
 				result = "user";
 			}
 		} else {
@@ -43,6 +46,10 @@ public class LoginAction extends ActionSupport implements SessionAware {
 		}
 
 		return result;
+	}
+
+	private boolean checkLogin(User loggedInUser, User user) {
+		return loggedInUser.getPassword().equals(user.getPassword());
 	}
 
 	public User getUser() {

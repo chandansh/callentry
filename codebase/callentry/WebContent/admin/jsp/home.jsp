@@ -6,10 +6,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Admin Home</title>
+<link rel="stylesheet" type="text/css" href="/callentry/css/callentry.css">
 </head>
 <body>
-	<s:property value="%{#session.user.userName}" />
 	<h1>Admin Home</h1>
+	<h3>
+		Welcome
+		<s:property value="%{#session.user.userName}" />
+	</h3>
 	<a href="populatecreateUser">Create User</a>
 	<br>
 	<a href="viewUsers">View Users</a>

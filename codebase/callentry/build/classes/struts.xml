@@ -23,7 +23,7 @@
 			class="com.callentry.action.admin.CreateUserAction">
 			<result name="populated">jsp/createUser.jsp</result>
 			<result name="input">jsp/createUser.jsp</result>
-			<result name="success">jsp/userCreated.jsp</result>
+			<result name="success" type="redirect">viewUsers</result>
 			<result name="failure" type="redirect">populatecreateUser</result>
 		</action>
 
