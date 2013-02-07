@@ -42,6 +42,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
 			if (admin == null) {
 				admin = new User("admin", "admin", "Call Entry", "admin", 2);
 				UserService.saveOrUpdate(admin);
+				result = "admin";
 			}
 		}
 
